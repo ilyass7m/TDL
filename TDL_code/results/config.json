@@ -1,0 +1,56 @@
+{
+  "seed": 7,
+  "dataset": {
+    "name": "make_moons",
+    "n_samples": 600,
+    "noise": 0.25,
+    "standardize": true
+  },
+  "split": {
+    "train_size": 32,
+    "test_size": 568,
+    "random_state": 7,
+    "stratify": true
+  },
+  "label_noise": {
+    "flip_probability": 0.4,
+    "num_flipped": 11
+  },
+  "models": {
+    "shallow": {
+      "hidden_width": 32,
+      "depth": 2,
+      "params": 129
+    },
+    "deep_converted": {
+      "width": 7,
+      "depth": 66,
+      "params_dense": 3613,
+      "params_nonzero": 583
+    },
+    "deep_scratch": {
+      "width": 7,
+      "depth": 66,
+      "params": 3613
+    }
+  },
+  "training": {
+    "shallow": {
+      "optimizer": "Adam",
+      "lr": 0.01,
+      "epochs": 8000,
+      "grad_clip": 5.0
+    },
+    "deep_scratch": {
+      "optimizer": "Adam",
+      "lr": 0.002,
+      "epochs": 2000,
+      "grad_clip": 5.0,
+      "init": "identity+noise(1e-3) internal layers"
+    }
+  },
+  "equivalence_check": {
+    "max_abs_diff_float64": 1.9895196601282805e-13,
+    "mean_abs_diff_float64": 2.892612075792537e-14
+  }
+}
